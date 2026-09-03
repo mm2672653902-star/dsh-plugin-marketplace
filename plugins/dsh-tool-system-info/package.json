@@ -1,0 +1,13 @@
+{
+  "name": "dsh-tool-system-info",
+  "version": "0.1.0",
+  "description": "Report host machine information (OS, CPU, memory, disk, node) to the agent",
+  "type": "module",
+  "main": "index.js",
+  "files": ["index.js", "cordis.patch.yml", "README.md"],
+  "keywords": ["dsh-plugin", "deepseek-harness", "tools", "system-info"],
+  "license": "MIT",
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" }
+  }
+}

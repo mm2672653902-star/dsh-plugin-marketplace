@@ -1,0 +1,19 @@
+{
+  "name": "dsh-ui-session-badge",
+  "version": "0.1.0",
+  "description": "A floating status badge for DeepSeek Harness: live clock plus session turn/step counters",
+  "type": "module",
+  "main": "index.js",
+  "files": ["index.js", "client.js", "cordis.patch.yml", "README.md"],
+  "keywords": ["dsh-plugin", "deepseek-harness", "ui", "widget"],
+  "license": "MIT",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "client": { "platform": "web", "inject": ["@deepseek-ai/dsh-client-runtime"] }
+  }
+}

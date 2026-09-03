@@ -1,0 +1,13 @@
+{
+  "name": "dsh-tool-calculator",
+  "version": "0.1.0",
+  "description": "Safe expression calculator with unit conversion for DeepSeek Harness",
+  "type": "module",
+  "main": "index.js",
+  "files": ["index.js", "cordis.patch.yml", "README.md"],
+  "keywords": ["dsh-plugin", "deepseek-harness", "tools", "calculator"],
+  "license": "MIT",
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" }
+  }
+}

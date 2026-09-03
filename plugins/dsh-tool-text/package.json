@@ -1,0 +1,13 @@
+{
+  "name": "dsh-tool-text",
+  "version": "0.1.0",
+  "description": "Text toolbox for DeepSeek Harness: statistics, encode/decode, hashing, JSON tools",
+  "type": "module",
+  "main": "index.js",
+  "files": ["index.js", "cordis.patch.yml", "README.md"],
+  "keywords": ["dsh-plugin", "deepseek-harness", "tools", "text"],
+  "license": "MIT",
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" }
+  }
+}

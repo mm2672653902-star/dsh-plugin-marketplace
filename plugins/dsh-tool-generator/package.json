@@ -1,0 +1,13 @@
+{
+  "name": "dsh-tool-generator",
+  "version": "0.1.0",
+  "description": "Generators for DeepSeek Harness: UUIDv4, nanoid-style ids, passwords, hex tokens",
+  "type": "module",
+  "main": "index.js",
+  "files": ["index.js", "cordis.patch.yml", "README.md"],
+  "keywords": ["dsh-plugin", "deepseek-harness", "tools", "generator"],
+  "license": "MIT",
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" }
+  }
+}

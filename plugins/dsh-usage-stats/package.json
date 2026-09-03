@@ -1,0 +1,13 @@
+{
+  "name": "dsh-usage-stats",
+  "version": "0.1.0",
+  "description": "Live session activity statistics for DeepSeek Harness (turns, steps, messages, tool calls)",
+  "type": "module",
+  "main": "index.js",
+  "files": ["index.js", "cordis.patch.yml", "README.md"],
+  "keywords": ["dsh-plugin", "deepseek-harness", "tools", "statistics"],
+  "license": "MIT",
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" }
+  }
+}

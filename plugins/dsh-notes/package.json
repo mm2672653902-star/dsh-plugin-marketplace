@@ -1,0 +1,13 @@
+{
+  "name": "dsh-notes",
+  "version": "0.1.0",
+  "description": "Persistent note/knowledge base for DeepSeek Harness: save, search, list, delete",
+  "type": "module",
+  "main": "index.js",
+  "files": ["index.js", "cordis.patch.yml", "README.md"],
+  "keywords": ["dsh-plugin", "deepseek-harness", "tools", "notes", "memory"],
+  "license": "MIT",
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" }
+  }
+}

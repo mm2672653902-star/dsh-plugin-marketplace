@@ -1,0 +1,8 @@
+- insert:
+    - id: dsh-safety-guard
+      name: dsh-safety-guard
+      config:
+        # deny: hard-block dangerous commands; ask: route them to the approval flow.
+        mode: deny
+        # Extra user rules: [{ pattern: "<regex source>", action: deny|ask, reason: "..." }]
+        extraRules: []

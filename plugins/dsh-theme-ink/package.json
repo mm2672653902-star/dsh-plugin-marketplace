@@ -1,0 +1,19 @@
+{
+  "name": "dsh-theme-ink",
+  "version": "0.1.0",
+  "description": "An ink-green dark theme for DeepSeek Harness (registers a selectable theme over the --dsw-* tokens)",
+  "type": "module",
+  "main": "index.js",
+  "files": ["index.js", "client.js", "cordis.patch.yml", "README.md"],
+  "keywords": ["dsh-plugin", "deepseek-harness", "theme", "ui"],
+  "license": "MIT",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "client": { "platform": "web", "inject": ["@deepseek-ai/dsh-client-ui-theme"] }
+  }
+}

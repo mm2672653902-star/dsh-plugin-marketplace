@@ -1,0 +1,13 @@
+{
+  "name": "dsh-reminder",
+  "version": "0.1.0",
+  "description": "Timed reminders for DeepSeek Harness: fires a note back into the session after a delay",
+  "type": "module",
+  "main": "index.js",
+  "files": ["index.js", "cordis.patch.yml", "README.md"],
+  "keywords": ["dsh-plugin", "deepseek-harness", "tools", "reminder", "schedule"],
+  "license": "MIT",
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" }
+  }
+}

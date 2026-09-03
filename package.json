@@ -1,0 +1,16 @@
+{
+  "name": "dsh-plugin-marketplace-root",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Community plugin suite & marketplace for DeepSeek Harness (dsh)",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "pack:all": "node scripts/pack-all.mjs",
+    "registry:build": "node scripts/build-registry.mjs"
+  },
+  "devDependencies": {
+    "vitest": "^3.0.0"
+  }
+}

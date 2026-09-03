@@ -1,0 +1,192 @@
+{
+  "owner": "mm2672653902-star",
+  "repo": "dsh-plugin-marketplace",
+  "version": "0.1.0",
+  "generatedAt": "2026-09-03T13:09:58.755Z",
+  "baseUrl": "https://mm2672653902-star.github.io/dsh-plugin-marketplace",
+  "plugins": [
+    {
+      "name": "dsh-skill-git-commit",
+      "version": "0.1.0",
+      "description": "Conventional Commits helper for DeepSeek Harness: compose and lint commit messages",
+      "category": "developer",
+      "icon": "🧑‍💻",
+      "ui": false,
+      "keywords": [
+        "dsh-plugin",
+        "deepseek-harness",
+        "tools",
+        "git",
+        "skill"
+      ],
+      "tarball": "https://github.com/mm2672653902-star/dsh-plugin-marketplace/releases/download/v0.1.0/dsh-skill-git-commit-0.1.0.tgz"
+    },
+    {
+      "name": "dsh-notes",
+      "version": "0.1.0",
+      "description": "Persistent note/knowledge base for DeepSeek Harness: save, search, list, delete",
+      "category": "productivity",
+      "icon": "🗒️",
+      "ui": false,
+      "keywords": [
+        "dsh-plugin",
+        "deepseek-harness",
+        "tools",
+        "notes",
+        "memory"
+      ],
+      "tarball": "https://github.com/mm2672653902-star/dsh-plugin-marketplace/releases/download/v0.1.0/dsh-notes-0.1.0.tgz"
+    },
+    {
+      "name": "dsh-reminder",
+      "version": "0.1.0",
+      "description": "Timed reminders for DeepSeek Harness: fires a note back into the session after a delay",
+      "category": "productivity",
+      "icon": "⏰",
+      "ui": false,
+      "keywords": [
+        "dsh-plugin",
+        "deepseek-harness",
+        "tools",
+        "reminder",
+        "schedule"
+      ],
+      "tarball": "https://github.com/mm2672653902-star/dsh-plugin-marketplace/releases/download/v0.1.0/dsh-reminder-0.1.0.tgz"
+    },
+    {
+      "name": "dsh-usage-stats",
+      "version": "0.1.0",
+      "description": "Live session activity statistics for DeepSeek Harness (turns, steps, messages, tool calls)",
+      "category": "productivity",
+      "icon": "📊",
+      "ui": false,
+      "keywords": [
+        "dsh-plugin",
+        "deepseek-harness",
+        "tools",
+        "statistics"
+      ],
+      "tarball": "https://github.com/mm2672653902-star/dsh-plugin-marketplace/releases/download/v0.1.0/dsh-usage-stats-0.1.0.tgz"
+    },
+    {
+      "name": "dsh-safety-guard",
+      "version": "0.1.0",
+      "description": "Dangerous-command gate for DeepSeek Harness: blocks or asks before destructive shell commands",
+      "category": "safety",
+      "icon": "🛡️",
+      "ui": false,
+      "keywords": [
+        "dsh-plugin",
+        "deepseek-harness",
+        "hooks",
+        "safety"
+      ],
+      "tarball": "https://github.com/mm2672653902-star/dsh-plugin-marketplace/releases/download/v0.1.0/dsh-safety-guard-0.1.0.tgz"
+    },
+    {
+      "name": "dsh-tool-calculator",
+      "version": "0.1.0",
+      "description": "Safe expression calculator with unit conversion for DeepSeek Harness",
+      "category": "tools",
+      "icon": "🧮",
+      "ui": false,
+      "keywords": [
+        "dsh-plugin",
+        "deepseek-harness",
+        "tools",
+        "calculator"
+      ],
+      "tarball": "https://github.com/mm2672653902-star/dsh-plugin-marketplace/releases/download/v0.1.0/dsh-tool-calculator-0.1.0.tgz"
+    },
+    {
+      "name": "dsh-tool-datetime",
+      "version": "0.1.0",
+      "description": "Date/time tools for DeepSeek Harness: now, convert, diff with timezone support",
+      "category": "tools",
+      "icon": "🕒",
+      "ui": false,
+      "keywords": [
+        "dsh-plugin",
+        "deepseek-harness",
+        "tools",
+        "datetime"
+      ],
+      "tarball": "https://github.com/mm2672653902-star/dsh-plugin-marketplace/releases/download/v0.1.0/dsh-tool-datetime-0.1.0.tgz"
+    },
+    {
+      "name": "dsh-tool-generator",
+      "version": "0.1.0",
+      "description": "Generators for DeepSeek Harness: UUIDv4, nanoid-style ids, passwords, hex tokens",
+      "category": "tools",
+      "icon": "🎲",
+      "ui": false,
+      "keywords": [
+        "dsh-plugin",
+        "deepseek-harness",
+        "tools",
+        "generator"
+      ],
+      "tarball": "https://github.com/mm2672653902-star/dsh-plugin-marketplace/releases/download/v0.1.0/dsh-tool-generator-0.1.0.tgz"
+    },
+    {
+      "name": "dsh-tool-system-info",
+      "version": "0.1.0",
+      "description": "Report host machine information (OS, CPU, memory, disk, node) to the agent",
+      "category": "tools",
+      "icon": "🖥️",
+      "ui": false,
+      "keywords": [
+        "dsh-plugin",
+        "deepseek-harness",
+        "tools",
+        "system-info"
+      ],
+      "tarball": "https://github.com/mm2672653902-star/dsh-plugin-marketplace/releases/download/v0.1.0/dsh-tool-system-info-0.1.0.tgz"
+    },
+    {
+      "name": "dsh-tool-text",
+      "version": "0.1.0",
+      "description": "Text toolbox for DeepSeek Harness: statistics, encode/decode, hashing, JSON tools",
+      "category": "tools",
+      "icon": "",
+      "ui": false,
+      "keywords": [
+        "dsh-plugin",
+        "deepseek-harness",
+        "tools",
+        "text"
+      ],
+      "tarball": "https://github.com/mm2672653902-star/dsh-plugin-marketplace/releases/download/v0.1.0/dsh-tool-text-0.1.0.tgz"
+    },
+    {
+      "name": "dsh-theme-ink",
+      "version": "0.1.0",
+      "description": "An ink-green dark theme for DeepSeek Harness (registers a selectable theme over the --dsw-* tokens)",
+      "category": "ui",
+      "icon": "🎨",
+      "ui": true,
+      "keywords": [
+        "dsh-plugin",
+        "deepseek-harness",
+        "theme",
+        "ui"
+      ],
+      "tarball": "https://github.com/mm2672653902-star/dsh-plugin-marketplace/releases/download/v0.1.0/dsh-theme-ink-0.1.0.tgz"
+    },
+    {
+      "name": "dsh-ui-session-badge",
+      "version": "0.1.0",
+      "description": "A floating status badge for DeepSeek Harness: live clock plus session turn/step counters",
+      "category": "ui",
+      "icon": "🪪",
+      "ui": true,
+      "keywords": [
+        "dsh-plugin",
+        "deepseek-harness",
+        "ui",
+        "widget"
+      ],
+      "tarball": "https://github.com/mm2672653902-star/dsh-plugin-marketplace/releases/download/v0.1.0/dsh-ui-session-badge-0.1.0.tgz"
+    }
+  ]
+}

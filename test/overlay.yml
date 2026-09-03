@@ -1,0 +1,28 @@
+# Integration-test overlay: mounts the whole suite into the web profile.
+# Relative specifiers resolve from this file's directory.
+- id: webserver
+  config:
+    host: 127.0.0.1
+    port: 3099
+
+- insert:
+    - id: dsh-tool-text
+      name: ../plugins/dsh-tool-text
+    - id: dsh-tool-calculator
+      name: ../plugins/dsh-tool-calculator
+    - id: dsh-tool-datetime
+      name: ../plugins/dsh-tool-datetime
+    - id: dsh-tool-generator
+      name: ../plugins/dsh-tool-generator
+    - id: dsh-tool-system-info
+      name: ../plugins/dsh-tool-system-info
+    - id: dsh-notes
+      name: ../plugins/dsh-notes
+    - id: dsh-safety-guard
+      name: ../plugins/dsh-safety-guard
+    - id: dsh-usage-stats
+      name: ../plugins/dsh-usage-stats
+    - id: dsh-skill-git-commit
+      name: ../plugins/dsh-skill-git-commit
+    - id: dsh-reminder
+      name: ../plugins/dsh-reminder

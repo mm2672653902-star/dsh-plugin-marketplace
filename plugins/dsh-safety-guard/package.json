@@ -1,0 +1,13 @@
+{
+  "name": "dsh-safety-guard",
+  "version": "0.1.0",
+  "description": "Dangerous-command gate for DeepSeek Harness: blocks or asks before destructive shell commands",
+  "type": "module",
+  "main": "index.js",
+  "files": ["index.js", "cordis.patch.yml", "README.md"],
+  "keywords": ["dsh-plugin", "deepseek-harness", "hooks", "safety"],
+  "license": "MIT",
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" }
+  }
+}

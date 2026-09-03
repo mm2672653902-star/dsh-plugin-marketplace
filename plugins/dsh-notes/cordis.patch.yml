@@ -1,0 +1,7 @@
+- insert:
+    - id: dsh-notes
+      name: dsh-notes
+      config:
+        # Directory holding notes.json. Defaults to <dsh home>/plugin-data/dsh-notes.
+        dir: !!js process.env.DSH_NOTES_DIR ?? undefined
+        maxNotes: 500

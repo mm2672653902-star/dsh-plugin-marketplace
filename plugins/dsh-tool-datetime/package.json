@@ -1,0 +1,13 @@
+{
+  "name": "dsh-tool-datetime",
+  "version": "0.1.0",
+  "description": "Date/time tools for DeepSeek Harness: now, convert, diff with timezone support",
+  "type": "module",
+  "main": "index.js",
+  "files": ["index.js", "cordis.patch.yml", "README.md"],
+  "keywords": ["dsh-plugin", "deepseek-harness", "tools", "datetime"],
+  "license": "MIT",
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" }
+  }
+}

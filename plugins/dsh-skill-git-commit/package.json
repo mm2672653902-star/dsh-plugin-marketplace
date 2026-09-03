@@ -1,0 +1,13 @@
+{
+  "name": "dsh-skill-git-commit",
+  "version": "0.1.0",
+  "description": "Conventional Commits helper for DeepSeek Harness: compose and lint commit messages",
+  "type": "module",
+  "main": "index.js",
+  "files": ["index.js", "cordis.patch.yml", "README.md"],
+  "keywords": ["dsh-plugin", "deepseek-harness", "tools", "git", "skill"],
+  "license": "MIT",
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" }
+  }
+}
