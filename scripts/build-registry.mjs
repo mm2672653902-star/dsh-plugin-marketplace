@@ -71,4 +71,7 @@ const registry = {
 
 const out = join(root, 'marketplace', 'registry.json')
 writeFileSync(out, JSON.stringify(registry, null, 2))
+// GitHub Pages serves from docs/, so keep a synced copy there.
+const docsDir = join(root, 'docs')
+if (existsSync(docsDir)) writeFileSync(join(docsDir, 'registry.json'), JSON.stringify(registry, null, 2))
 console.log(`Wrote ${out} with ${plugins.length} plugins.`)

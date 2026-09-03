@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DeepSeek Harness 插件市场</title>
+<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+<style>
+  :root {
+    --bg: #0b1512; --panel: #10201b; --panel2: #152a24; --line: #24463c;
+    --text: #e6f4ec; --muted: #9db8ab; --brand: #3ecf8e; --warn: #e0b458;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text);
+    font: 15px/1.6 -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; }
+  header { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(8px);
+    background: rgba(11,21,18,.85); border-bottom: 1px solid var(--line);
+    padding: 18px 28px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+  header h1 { font-size: 20px; } header h1 span { color: var(--brand); }
+  header .sub { color: var(--muted); font-size: 13px; }
+  main { max-width: 1180px; margin: 0 auto; padding: 28px; }
+  .toolbar { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 20px; }
+  #search { flex: 1; min-width: 220px; background: var(--panel); color: var(--text);
+    border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-size: 14px; }
+  #search:focus { outline: none; border-color: var(--brand); }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip { cursor: pointer; border: 1px solid var(--line); background: var(--panel);
+    color: var(--muted); border-radius: 999px; padding: 6px 14px; font-size: 13px; }
+  .chip.on { background: var(--brand); color: #06130d; border-color: var(--brand); font-weight: 600; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+    padding: 16px; display: flex; flex-direction: column; gap: 10px; transition: .15s; position: relative; }
+  .card:hover { border-color: var(--brand); transform: translateY(-2px); }
+  .card.sel { border-color: var(--brand); box-shadow: 0 0 0 1px var(--brand); }
+  .card .top { display: flex; align-items: center; gap: 10px; }
+  .card .icon { font-size: 24px; }
+  .card .name { font-weight: 600; font-size: 15px; }
+  .card .ver { color: var(--muted); font-size: 12px; margin-left: auto; }
+  .card input[type=checkbox] { width: 18px; height: 18px; accent-color: var(--brand); cursor: pointer; }
+  .card .desc { color: var(--muted); font-size: 13px; flex: 1; }
+  .card .tags { display: flex; gap: 6px; }
+  .tag { font-size: 11px; border-radius: 6px; padding: 2px 8px; background: var(--panel2); color: var(--muted); }
+  .tag.ui { background: rgba(62,207,142,.15); color: var(--brand); }
+  .bar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+    background: var(--panel); border-top: 1px solid var(--line);
+    padding: 14px 28px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .bar .count { color: var(--muted); }
+  .bar .count b { color: var(--brand); }
+  .btn { cursor: pointer; border: 1px solid var(--line); background: var(--panel2); color: var(--text);
+    border-radius: 10px; padding: 9px 16px; font-size: 14px; }
+  .btn.primary { background: var(--brand); color: #06130d; border-color: var(--brand); font-weight: 600; }
+  .btn:disabled { opacity: .4; cursor: not-allowed; }
+  #toast { position: fixed; bottom: 84px; left: 50%; transform: translateX(-50%);
+    background: var(--panel2); border: 1px solid var(--brand); color: var(--text);
+    border-radius: 10px; padding: 10px 18px; font-size: 14px; opacity: 0; transition: .2s; pointer-events: none; }
+  #toast.show { opacity: 1; }
+  .hint { color: var(--muted); font-size: 13px; margin-top: 24px; }
+  .hint code { background: var(--panel2); padding: 2px 6px; border-radius: 6px; }
+  footer { color: var(--muted); font-size: 12px; text-align: center; padding: 40px 0 90px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🧩 DeepSeek Harness <span>插件市场</span></h1>
+  <span class="sub">勾选插件 → 批量安装 · 由 dsh-plugin-marketplace 提供</span>
+</header>
+<main>
+  <div class="toolbar">
+    <input id="search" placeholder="搜索插件名称或描述…" />
+    <div class="chips" id="chips"></div>
+  </div>
+  <div class="grid" id="grid"></div>
+  <p class="hint">安装方式：在市场勾选后复制命令，或下载 <code>install.ps1</code> 运行；
+    也可逐个执行 <code>dsh plugin --profile web add &lt;tarball-url&gt;</code>。</p>
+</main>
+<div class="bar">
+  <span class="count">已选 <b id="count">0</b> 个插件</span>
+  <button class="btn" id="selectAll">全选</button>
+  <button class="btn" id="clear">清空</button>
+  <span style="flex:1"></span>
+  <button class="btn" id="copyCmds">复制安装命令</button>
+  <button class="btn" id="dlScript">下载 install.ps1</button>
+  <button class="btn primary" id="dlZip">打包下载 .zip</button>
+</div>
+<div id="toast"></div>
+<footer>MIT License · 适配 DeepSeek Harness (dsh) 开发者预览版</footer>
+
+<script>
+let registry = null;
+let filter = 'all';
+const selected = new Set();
+
+const $ = (id) => document.getElementById(id);
+function toast(msg) {
+  const t = $('toast'); t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 1800);
+}
+
+async function init() {
+  const res = await fetch('registry.json');
+  registry = await res.json();
+  renderChips(); render();
+}
+
+function categories() {
+  const set = new Set(registry.plugins.map(p => p.category));
+  return ['all', ...set];
+}
+
+function renderChips() {
+  const labels = { all: '全部', tools: '工具', productivity: '效率', developer: '开发', safety: '安全', ui: '界面' };
+  $('chips').innerHTML = categories().map(c =>
+    `<span class="chip ${c === filter ? 'on' : ''}" data-c="${c}">${labels[c] ?? c}</span>`).join('');
+  $('chips').querySelectorAll('.chip').forEach(el =>
+    el.onclick = () => { filter = el.dataset.c; renderChips(); render(); });
+}
+
+function visible() {
+  const q = $('search').value.trim().toLowerCase();
+  return registry.plugins.filter(p =>
+    (filter === 'all' || p.category === filter) &&
+    (!q || p.name.toLowerCase().includes(q) || p.description.toLowerCase().includes(q)));
+}
+
+function render() {
+  const list = visible();
+  $('grid').innerHTML = list.map(p => `
+    <div class="card ${selected.has(p.name) ? 'sel' : ''}" data-n="${p.name}">
+      <div class="top">
+        <input type="checkbox" ${selected.has(p.name) ? 'checked' : ''} data-n="${p.name}" />
+        <span class="icon">${p.icon}</span>
+        <span class="name">${p.name}</span>
+        <span class="ver">v${p.version}</span>
+      </div>
+      <div class="desc">${p.description}</div>
+      <div class="tags">
+        <span class="tag">${p.category}</span>
+        ${p.ui ? '<span class="tag ui">含界面</span>' : ''}
+      </div>
+    </div>`).join('');
+  $('grid').querySelectorAll('input[type=checkbox]').forEach(cb =>
+    cb.onchange = () => { cb.checked ? selected.add(cb.dataset.n) : selected.delete(cb.dataset.n); sync(); });
+  sync();
+}
+
+function sync() {
+  $('count').textContent = selected.size;
+  document.querySelectorAll('.card').forEach(c =>
+    c.classList.toggle('sel', selected.has(c.dataset.n)));
+  const dis = selected.size === 0;
+  ['copyCmds', 'dlScript', 'dlZip'].forEach(id => $(id).disabled = dis);
+}
+
+function chosen() { return registry.plugins.filter(p => selected.has(p.name)); }
+
+function installCommands() {
+  return chosen().map(p => `dsh plugin --profile web add "${p.tarball}"`).join('\n');
+}
+
+$('search').oninput = render;
+$('selectAll').onclick = () => { visible().forEach(p => selected.add(p.name)); render(); };
+$('clear').onclick = () => { selected.clear(); render(); };
+
+$('copyCmds').onclick = async () => {
+  await navigator.clipboard.writeText(installCommands());
+  toast('已复制 ' + selected.size + ' 条安装命令');
+};
+
+$('dlScript').onclick = () => {
+  const lines = chosen().map(p => `  "${p.tarball}"`).join(",\n");
+  const script = `# install.ps1 — 批量安装 DeepSeek Harness 插件
+# 用法: powershell -ExecutionPolicy Bypass -File install.ps1 [-Profile web]
+param([string]$Profile = "web")
+$urls = @(` + '\n' + lines + '\n' + `)
+foreach ($u in $urls) {
+  Write-Host "安装 $u"
+  dsh plugin --profile $Profile add $u
+  if ($LASTEXITCODE -ne 0) { Write-Warning "失败: $u" }
+}
+Write-Host "完成。重启 dsh 生效。"
+`;
+  download('install.ps1', script, 'text/plain');
+  toast('install.ps1 已生成');
+};
+
+$('dlZip').onclick = async () => {
+  if (typeof JSZip === 'undefined') { toast('JSZip 未加载'); return; }
+  const zip = new JSZip();
+  toast('打包中…');
+  for (const p of chosen()) {
+    try {
+      const r = await fetch(p.tarball);
+      if (!r.ok) throw new Error(r.status);
+      zip.file(p.tarball.split('/').pop(), await r.arrayBuffer());
+    } catch (e) { toast('下载失败: ' + p.name); return; }
+  }
+  const blob = await zip.generateAsync({ type: 'blob' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'dsh-plugins.zip'; a.click();
+  toast('zip 已下载');
+};
+
+function download(name, text, type) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([text], { type }));
+  a.download = name; a.click();
+}
+
+init();
+</script>
+</body>
+</html>
