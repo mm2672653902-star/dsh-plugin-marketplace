@@ -57,7 +57,7 @@ window.__ModuleLoader__.load({
 		}
 
 		exports.apply = function apply(ctx) {
-			return ctx.slots.register({ name: 'shell.overlay' }, Badge);
+			return ctx.slots.register({ name: 'shell.overlay', id: 'dsh-ui-session-badge' }, Badge);
 		};
 
 		return module.exports;
